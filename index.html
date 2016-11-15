@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>app</title>
+    <style>
+      .clearMarginPadding {
+        padding: 0;
+        margin: 0;
+      }
+      header {
+        background-color: #20A0FF;
+        height: 50px;
+        padding-top: 20px;
+      }
+      .headerH1 {
+        align: left;
+      }
+    </style>
+  </head>
+  <body class="clearMarginPadding">
+    <header>
+      <h1 style="width: 240px" class="clearMarginPadding" align="center">GetJSON</h1>
+    </header>
+    <div id="app">
+      <router-view></router-view>
+    </div>
+  </body>
+</html>
+
+<!-- <script>
+// import _ from 'lodash'
+
+class AJAX {
+  constructor({ms}) {
+    this.ms = ms || 2000;
+  };
+
+  get(url) {
+    //  USER/:id
+    //Tabel
+    if(!window || !window.localStorage){
+      return console.info('此浏览器不支持localStorage， 请更换浏览器重试！');
+    }
+    console.log('1111');
+    this.setTime(y => {
+      const params = url.split('/');
+      let TABLES = JSON.parse(localStorage.getItem('TABLES'));
+      console.log(TABLES, '666666666');
+      let TABLE = _.find(TABLES, function({name}){
+        return name === params[0];
+      });
+
+      if(TABLE){
+
+      }else {
+
+      }
+    });
+
+  };
+  post() {
+
+  };
+  put() {
+
+  };
+  delete() {
+
+  };
+  setTime(callback) {
+    setTimeout(y => callback(),this.ms);
+  };
+
+  isTrue() {
+    return window.localStorage
+  }
+}
+
+// 测试
+let ajax = new AJAX({ms: 4000});
+ajax.get('USER_TBL/12');
+
+</script> -->
