@@ -1,6 +1,6 @@
 # app
 
-> A Vue.js project
+> A vue2.X + vue-router + vuex + Element(UI) project。
 
 ## Build Setup
 
