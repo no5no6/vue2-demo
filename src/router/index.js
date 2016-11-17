@@ -10,6 +10,10 @@ export default [
         component: Login
     },
     {
+        path: '/index',
+        component: Index
+    },
+    {
         path: '/',
         component: Index
     }

@@ -13,16 +13,13 @@ const router = new VueRouter({
     routes
 })
 
-router.beforeEach(({meta, path}, from, next) => {
-    let {auth = true} = meta
-    let isLogin = Boolean(store.state.User.name);
+router.beforeEach(({path}, from, next) => {
 
-    let TABLES = JSON.parse(localStorage.getItem('ROOT_DATABASE'))
-    if(!TABLES){
+    if(!JSON.parse(localStorage.getItem('ROOT_DATABASE'))){
       localStorage.setItem('ROOT_DATABASE', '{"USERS_TBL": []}');
     }
 // localStorage.clear();
-    if (auth && !isLogin && path !== '/login') {
+    if (store.state.User.userName === '' && path !== '/login') {
       return next({ path: '/login' });
     }
     next();

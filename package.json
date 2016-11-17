@@ -9,8 +9,9 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "element-ui": "^1.0.0",
     "lodash": "^4.16.4",
-    "vue": "^2.0.1",
+    "vue": "^2.0.6",
     "vue-router": "^2.0.1",
     "vuex": "^2.0.0"
   },

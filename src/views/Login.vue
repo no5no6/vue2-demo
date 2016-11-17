@@ -1,16 +1,16 @@
 <template>
-  <div class="loginDiv">
+  <div class="loginDiv" v-loading.fullscreen="User.loading">
     <el-row type="flex" align="middle" justify="center" :class="{succesTip: User.resultStatus, errorTip: !User.resultStatus}">{{User.resultText}}</el-row>
     <el-row type="flex" align="middle" justify="center" class="input-row">
       <el-col :span="2">用户名：</el-col>
       <el-col :span="4"><el-input @input="inputUserName" size="large" :class="inputClass" :placeholder="placeholderName" :value="User.userName"></el-input></el-col>
     </el-row>
     <el-row type="flex" align="middle" justify="center" class="input-row">
-      <el-col  :span="2">密码：</el-col>
+      <el-col :span="2">密码：</el-col>
       <el-col :span="4"><el-input type="password" @input="inputPassword" size="large" :class="inputClass" :placeholder="placeholderPass" :value="User.password" ></el-input></el-col>
     </el-row>
     <el-row v-if="User.buutonStatus" type="flex" align="middle" justify="center" class="input-row">
-      <el-col  :span="2">确认密码：</el-col>
+      <el-col :span="2">确认密码：</el-col>
       <el-col :span="4"><el-input type="password" @input="inputRepeatPassword" size="large" :class="inputClass" :placeholder="placeholderRepeatPass" :value="User.repeatPassword" ></el-input></el-col>
     </el-row>
     <el-row type="flex" align="middle" justify="center" class="input-row">
@@ -35,10 +35,10 @@
     },
     // watch: {
     //   'inputText'(name){
-    //     this.$nextTick(y =>{
-    //       console.log(name, 'ttttt');
-    //       //this.validate(name);
-    //     });
+        // this.$nextTick(y =>{
+        //   console.log(name, 'ttttt');
+        //   //this.validate(name);
+        // });
     //   }
     // },
 
@@ -48,21 +48,28 @@
       })
     },
     methods: {
-      ...mapActions(['signin', 'updateVal', 'register', 'passwordNoSame', 'isNameExist']),
+      ...mapActions(['signin', 'updateVal', 'register', 'passwordNoSame', 'isNameExist', 'loadingChange']),
       login(e) {
-        let {buutonStatus, userName, password, repeatPassword, userNameExist} = this.User;
+        let {buutonStatus, userName, password, repeatPassword, resultStatus} = this.User;
 
-        if(buutonStatus){
+        this.loadingChange(true);
+
+        if(this.User.buutonStatus){
           if(repeatPassword === password){
-            this.isNameExist({userName, password});
-            if(userNameExist){
-              this.register({userName, password});
-            }
+            this.isNameExist({userName, password}).then(status => {
+              if(!this.User.userNameExist){
+                this.register({userName, password}).then(status2 => {
+                  if(this.User.resultStatus) setTimeout(y => this.$router.replace({path: '/index'}), 1000);
+                });
+              }
+            });
           }else {
             this.passwordNoSame();
           }
         }else{
-          this.signin({userName, password});
+          this.signin({userName, password}).then(status => {
+            if(status) setTimeout(y => this.$router.replace({path: '/index'}), 1000);
+          });
         }
       },
       inputUserName(value) {
