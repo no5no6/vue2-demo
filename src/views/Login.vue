@@ -41,7 +41,6 @@
         // });
     //   }
     // },
-
     computed: {
       ...mapState({
         User: state => state.User
@@ -84,7 +83,6 @@
     }
   }
 </script>
-
 <style>
   .input{
     width: 220px;
