@@ -24,7 +24,7 @@
   import { mapActions, mapState } from 'vuex';
 
   export default {
-    name: 'vueInput',
+    name: 'Login',
     data(){
       return {
         placeholderName: '请输入用户名',
