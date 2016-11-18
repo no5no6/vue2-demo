@@ -18,7 +18,7 @@
             </el-radio-group>
           </el-col>
           <el-col :span="3">
-            <el-select :span="10" v-model="value" style="width:120px" placeholder="请选择">
+            <el-select :span="10" v-model="value" style="width:120px;" placeholder="请选择">
               <el-option
                 v-for="item in selectLevelData"
                 :label="item.label"
@@ -162,5 +162,8 @@
 }
 .tree {
   padding: 0 20px 0 20px;
+}
+.el-input__inner {
+    height: 42px;
 }
 </style>
