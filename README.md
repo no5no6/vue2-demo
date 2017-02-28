@@ -2,6 +2,10 @@
 
 > A vue2.X + vue-router + vuex + Element(UI) project。
 
+## example
+
+![example](example.gif)
+
 ## Build Setup
 
 ``` bash
