@@ -17,7 +17,7 @@ const actions = {
     console.log(state, 'retrieve');
   }
   add ({commit, state}, param){
-    let url = param.reduce(fucntion(memo, item, key){
+    let url = param.reduce(function(memo, item, key){
       console.log('item:'+ item, '   key:'+ key);
     }, 'ROOT_DATABASE/USERS_TBL');
 
